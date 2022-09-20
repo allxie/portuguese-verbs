@@ -1,8 +1,24 @@
-import sentences from '../sentences';
+import sentences from '../languageConstants/sentences';
 
 
-function VerbChecks({isChecked, handleVerbCheck}) {
+function VerbChecks({availableVerbs, setAvailableVerbs}) {
+  
+  const handleVerbCheck = (e) => {
+    const index = Number(e.target.value)
 
+    var updatedList = [...availableVerbs]
+    if (e.target.checked) {
+      updatedList = [...availableVerbs, index]
+    } else {
+      updatedList.splice(availableVerbs.indexOf(index), 1)
+    }
+
+    setAvailableVerbs(updatedList);
+  }
+
+  const isChecked = (index) => {
+    return availableVerbs.indexOf(index) !== -1
+  }
 
   return (
     <div className='box box-left'>
