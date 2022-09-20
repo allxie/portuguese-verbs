@@ -76,7 +76,11 @@ module.exports = [
       }
     },
     englishVerbConjugation: {
-      present: 'are',
+      present: {
+        eu: 'am',
+        voce: 'are',
+        elas: 'are'
+      },
       pastPerfect: 'were',
       pastImperfect: 'used to be'
     },
@@ -90,7 +94,7 @@ module.exports = [
       present: {
         eu: 'seu',
         voce: 'é',
-        elas: 'sæo'
+        elas: 'são'
       },
       pastPerfect: {
         eu: 'fui',
@@ -104,12 +108,20 @@ module.exports = [
       }
     },
     englishVerbConjugation: {
-      present: 'are',
-      pastPerfect: 'were',
+      present: {
+        eu: 'am',
+        voce: 'are',
+        elas: 'are'
+      },
+      pastPerfect: {
+        eu: 'was',
+        voce: 'were',
+        elas: 'were'
+      },
       pastImperfect: 'used to be'
     },
     secondHalfEnglish: 'intelligent.',
-    secondHalf: "inteligentes."
+    secondHalf: "inteligente(s)."
   },
   {
     verbRoot: "trazer",
@@ -167,28 +179,34 @@ module.exports = [
     secondHalfEnglish: 'some homework.',
     secondHalf: "alguns lição de casa."
   },
-  // {
-  //   verbRoot: "saber",
-  //   verbEnglish: "to know",
-  //   verbConjugation: {
-  //     present: {
-  //       eu: 'sei',
-  //       voce: 'sabe',
-  //       elas: 'sabem'
-  //     },
-  //     pastPerfect: {
-  //       eu: 'soube',
-  //       voce: 'soube',
-  //       elas: 'souberam'
-  //     },
-  //     pastImperfect: {
-  //       eu: 'sabia',
-  //       voce: 'sabia',
-  //       elas: 'sabiam'
-  //     }
-  //   },
-  //   secondHalf: "falar Portuguese."
-  // },
+  {
+    verbRoot: "saber",
+    verbEnglish: "to know",
+    verbConjugation: {
+      present: {
+        eu: 'sei',
+        voce: 'sabe',
+        elas: 'sabem'
+      },
+      pastPerfect: {
+        eu: 'soube',
+        voce: 'soube',
+        elas: 'souberam'
+      },
+      pastImperfect: {
+        eu: 'sabia',
+        voce: 'sabia',
+        elas: 'sabiam'
+      }
+    },
+    englishVerbConjugation: {
+      present: 'know',
+      pastPerfect: 'knew',
+      pastImperfect: 'used to know'
+    },
+    secondHalf: "falar Portuguese.",
+    secondHalfEnglish: "how to speak portuguese."
+  },
   // {
   //   verbRoot: "querer",
   //   verbEnglish: "to want",
