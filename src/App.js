@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import sentences from './sentences';
 import './App.css';
+import VerbChecks from './components/VerbChecks';
+
 
 const subjects = [
   {key: 'eu', display: 'Eu', english: 'I'},
@@ -60,7 +62,7 @@ function App() {
     }
     setHintCount(hintCount + 1)
   }
-  
+
   const answer = sentence.verbConjugation[tense.key][subject.key]
 
   const handleKeyDown = (event) => {
@@ -116,7 +118,7 @@ function App() {
           color: getEnglishSentenceColor(),
         }}>
           {`${subject.english} ${getEnglishVerb()} ${sentence.secondHalfEnglish}`}
-        </p>        
+        </p>     
         <div
           style={{flexDirection:"row", height: '55px'}}
         >
@@ -169,31 +171,7 @@ function App() {
           </button>
         </div>
 
-        {/* CHECKBOX */}
-        <div className='box box-left'>
-          <h5 id='verb-list-title'>Verbs to Practice</h5>
-          {
-            sentences.map((sentence, index) => {
-              return (
-                <div key={index}>
-                  <input 
-                    value={index} 
-                    type="checkbox" 
-                    onChange={handleVerbCheck}
-                    defaultChecked={isChecked(index)}
-                  />
-                  <span 
-                    style={{
-                      color: isChecked(index) ? 'white' : 'grey'
-                    }}
-                  >
-                    {sentence.verbEnglish}  
-                  </span>
-                </div>
-              )
-            })
-          }
-        </div>
+        <VerbChecks handleVerbCheck={handleVerbCheck} isChecked={isChecked}/>
 
         {/* Game Box */}
         <div className='box box-right'>
