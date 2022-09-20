@@ -78,25 +78,6 @@ function App() {
     }
   }
 
-  /* Checklist */
-
-  const handleVerbCheck = (e) => {
-    const index = Number(e.target.value)
-
-    var updatedList = [...availableVerbs]
-    if (e.target.checked) {
-      updatedList = [...availableVerbs, index]
-    } else {
-      updatedList.splice(availableVerbs.indexOf(index), 1)
-    }
-
-    setAvailableVerbs(updatedList);
-  }
-
-  const isChecked = (index) => {
-    return availableVerbs.indexOf(index) !== -1
-  }
-
   const getEnglishSentenceColor = () => {
     if(hintCount > 1) return 'grey'
     if(success) return 'green'
@@ -171,7 +152,10 @@ function App() {
           </button>
         </div>
 
-        <VerbChecks handleVerbCheck={handleVerbCheck} isChecked={isChecked}/>
+        <VerbChecks 
+          availableVerbs={availableVerbs}
+          setAvailableVerbs={setAvailableVerbs}
+        />
 
         {/* Game Box */}
         <div className='box box-right'>
