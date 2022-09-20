@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/portuguese-verbs/static/css/main.073c9b0a.css",
-    "main.js": "/portuguese-verbs/static/js/main.1b1a5fae.js",
+    "main.css": "/portuguese-verbs/static/css/main.552c3112.css",
+    "main.js": "/portuguese-verbs/static/js/main.237c43fa.js",
     "static/js/787.16be514c.chunk.js": "/portuguese-verbs/static/js/787.16be514c.chunk.js",
     "index.html": "/portuguese-verbs/index.html",
-    "main.073c9b0a.css.map": "/portuguese-verbs/static/css/main.073c9b0a.css.map",
-    "main.1b1a5fae.js.map": "/portuguese-verbs/static/js/main.1b1a5fae.js.map",
+    "main.552c3112.css.map": "/portuguese-verbs/static/css/main.552c3112.css.map",
+    "main.237c43fa.js.map": "/portuguese-verbs/static/js/main.237c43fa.js.map",
     "787.16be514c.chunk.js.map": "/portuguese-verbs/static/js/787.16be514c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.1b1a5fae.js"
+    "static/css/main.552c3112.css",
+    "static/js/main.237c43fa.js"
   ]
 }
