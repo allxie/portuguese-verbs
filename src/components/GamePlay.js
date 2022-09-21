@@ -1,15 +1,20 @@
 import {useState} from 'react';
-import sentences from '../languageConstants/sentences';
-import tenses from '../languageConstants/tenses';
+import cards from '../languageConstants/cards'
+// import tenses from '../languageConstants/tenses';
+import './GamePlay.css';
 
-const subjects = [
-  {key: 'eu', display: 'Eu', english: 'I'},
-  {key: 'voce', display: 'Você', english: 'You'},
-  {key: 'elas', display: 'Elas', english: 'They'}
-]
+const subjects = {
+  eu:  { display: 'Eu', english: 'I'},
+  voce: { display: 'Você', english: 'You'},
+  // {key: 'ele', display: 'Ele', english: 'He'},
+  // {key: 'ela', display: 'Ela', english: 'She'}
+  elas: { display: 'Elas', english: 'They'},
+  // {key: 'voces', display: 'Vocês', english: 'Y'all'},
+}
 
-const getRandom = (array) => {
-  return array[Math.floor(Math.random() * array.length)]
+const getRandomCard = (availableVerbs) => {
+  const viableCards = cards.filter((card) => availableVerbs.indexOf(card.root) !== -1)
+  return viableCards[Math.floor(Math.random() * viableCards.length)]
 }
 
 function GamePlay({giveUp, winPoints, availableVerbs}) {
@@ -18,16 +23,10 @@ function GamePlay({giveUp, winPoints, availableVerbs}) {
   const [hintCount, setHintCount] = useState(0)
   const [inputValue, setInputValue] = useState('')
 
-  const [sentence, setSentence] = useState(sentences[getRandom(availableVerbs)])
-  const [subject, setSubject] = useState(getRandom(subjects))
-  const [tense, setTense] = useState(getRandom(tenses))
+  const [card, setCard] = useState(getRandomCard(availableVerbs))
 
-  const answer = sentence.verbConjugation[tense.key][subject.key]
-
-  const nextSentence = () => {
-    setSentence(sentences[getRandom(availableVerbs)])
-    setTense(getRandom(tenses))
-    setSubject(getRandom(subjects));
+  const nextCard = () => {
+    setCard(getRandomCard(availableVerbs))
     setSuccess(false);
     setInputValue('');
     setHintCount(0)
@@ -47,64 +46,42 @@ function GamePlay({giveUp, winPoints, availableVerbs}) {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      if(success || hintCount === 2) return nextSentence()
+      if(success || hintCount === 2) return nextCard()
     }
   }
 
   const onInput = (e) => {
     setInputValue(e.target.value)
-    if(e.target.value === answer) {
+    if(e.target.value.toLowerCase() === card.conjugation) {
       handleCorrectAnswer()
     }
   }
 
-  const getEnglishSentenceColor = () => {
-    if(hintCount > 1) return 'grey'
-    if(success) return 'green'
-    else return '#282c34'
-  }
-
-  const getEnglishVerb = () => {
-    const englishTense = sentence.englishVerbConjugation[tense.key]
-    if(typeof englishTense === 'object') return englishTense[subject.key]
-    else return englishTense
-  }
-
   return (
     <div>
-      <p style={{
-        fontSize: '1em',
-        color: getEnglishSentenceColor(),
-      }}>
-        {`${subject.english} ${getEnglishVerb()} ${sentence.secondHalfEnglish}`}
+      <p className={`${hintCount < 2? 'engSentenceHidden': 'engSentenceShow'} ${success ? 'textSuccess': ''}`}>
+        {`${subjects[card.subject].english} ${card.en} ${card.sentence}`}
       </p>
 
       {/* Sentence */}
-      <div
-        style={{flexDirection:"row", height: '55px'}}
-      >
-        {subject.display} 
+      <div className='game'>
+        {subjects[card.subject].display} 
         <input
-          className={`verb-input ${success ? 'success' : ''}`}
-          style={{
-            display: hintCount > 1 ? 'none' : 'inline',
-          }}
-          placeholder={getEnglishVerb()}
+          className={`verb-input ${success ? 'input-success' : ''} ${hintCount > 1 ? 'invisible' : ''}`}
+          placeholder={card.en}
           value={inputValue}
           onChange={onInput}
           onKeyDown={handleKeyDown}
         />
-        <span
-          style={{display: hintCount < 2 ? 'none' : 'inline'}}
-        >
-          {` ${answer} `}
+        <span className={hintCount < 2 ? 'invisible' : ''}>
+          {` ${card.conjugation} `}
         </span>
-        {sentence.secondHalf}
+        {card.frase}
       </div>
 
       {/* Helpers */}
       <div className={`sentence sentence-small ${success ? 'invisible' : 'visible'}`}>
-        {`${hintCount < 1 ? sentence.verbEnglish : sentence.verbRoot} (${tense.display})`}  
+        {`${hintCount < 1 ? card.en : card.root} (${card.tense})`}  
       </div>
       
       <div className={`sentence ${success ? 'visible' : 'invisible'}`}>
@@ -123,7 +100,7 @@ function GamePlay({giveUp, winPoints, availableVerbs}) {
         </button>
         <button 
           className='game-button'
-          onClick={() => nextSentence()}
+          onClick={() => nextCard()}
           disabled={hintCount < 2 && !success}
         >
           { hintCount > 1 ? 'New Game' : 'Next' }

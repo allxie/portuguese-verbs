@@ -5,7 +5,7 @@ import GamePlay from './components/GamePlay';
 
 function App() {
 
-  const [availableVerbs, setAvailableVerbs] = useState([0])
+  const [availableVerbs, setAvailableVerbs] = useState(['ir'])
 
   const [score, setScore] = useState(0)
   const [streak, setStreak] = useState(0)

@@ -1,44 +1,44 @@
-import sentences from '../languageConstants/sentences';
-
+// import sentences from '../languageConstants/sentences';
+import verbs from '../languageConstants/verbs'
 
 function VerbChecks({availableVerbs, setAvailableVerbs}) {
   
   const handleVerbCheck = (e) => {
-    const index = Number(e.target.value)
+    const portugueseVerb = Number(e.target.value)
 
     var updatedList = [...availableVerbs]
     if (e.target.checked) {
-      updatedList = [...availableVerbs, index]
+      updatedList = [...availableVerbs, portugueseVerb]
     } else {
-      updatedList.splice(availableVerbs.indexOf(index), 1)
+      updatedList.splice(availableVerbs.indexOf(portugueseVerb), 1)
     }
 
     setAvailableVerbs(updatedList);
   }
 
-  const isChecked = (index) => {
-    return availableVerbs.indexOf(index) !== -1
+  const isChecked = (portugueseVerb) => {
+    return availableVerbs.indexOf(portugueseVerb) !== -1
   }
 
   return (
     <div className='box box-left'>
       <h5 id='verb-list-title'>Verbs to Practice</h5>
       {
-        sentences.map((sentence, index) => {
+        Object.entries(verbs).map(([portugueseVerb, englishVerb], index) => {
           return (
             <div key={index}>
               <input 
-                value={index} 
+                value={portugueseVerb} 
                 type="checkbox" 
                 onChange={handleVerbCheck}
-                defaultChecked={isChecked(index)}
+                defaultChecked={isChecked(portugueseVerb)}
               />
               <span 
                 style={{
-                  color: isChecked(index) ? 'white' : 'grey'
+                  color: isChecked(portugueseVerb) ? 'white' : 'grey'
                 }}
               >
-                {sentence.verbEnglish}  
+                {englishVerb}  
               </span>
             </div>
           )
