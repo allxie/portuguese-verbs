@@ -1,10 +1,9 @@
-// import sentences from '../languageConstants/sentences';
 import verbs from '../languageConstants/verbs'
 
 function VerbChecks({availableVerbs, setAvailableVerbs}) {
   
   const handleVerbCheck = (e) => {
-    const portugueseVerb = Number(e.target.value)
+    const portugueseVerb = e.target.value
 
     var updatedList = [...availableVerbs]
     if (e.target.checked) {

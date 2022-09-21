@@ -37,22 +37,29 @@
   }
 }
 
-.box {
+.top-section {
   position: fixed;
   top: 10px;
+}
+.box {
   padding: 20px;
   border: 1px solid white;
   width: 20vw;
   font-size:.7em;
   text-align: left;
+  margin-bottom: 10px;
 }
 
-.box-right {
+.section-right {
   right: 10px;
 }
 
-.box-left {
+.section-left {
   left: 10px;
+}
+
+.box-stack {
+  position: relative;
 }
 
 #verb-list-title {

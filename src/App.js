@@ -1,11 +1,16 @@
 import {useState} from 'react';
 import './App.css';
 import VerbChecks from './components/VerbChecks';
+import TenseChecks from './components/TenseChecks';
 import GamePlay from './components/GamePlay';
+import cards from './languageConstants/cards';
+
+const tenses = [...new Set(cards.map(card => card.tense))]
 
 function App() {
 
   const [availableVerbs, setAvailableVerbs] = useState(['ir'])
+  const [availableTenses, setAvailableTenses] = useState(tenses)
 
   const [score, setScore] = useState(0)
   const [streak, setStreak] = useState(0)
@@ -28,15 +33,24 @@ function App() {
           winPoints={winPoints}
           giveUp={giveUp}
           availableVerbs={availableVerbs}
+          availableTenses={availableTenses}
         />
 
-        <VerbChecks 
-          availableVerbs={availableVerbs}
-          setAvailableVerbs={setAvailableVerbs}
-        />
+        <div className="top-section section-left">
+          <VerbChecks 
+            availableVerbs={availableVerbs}
+            setAvailableVerbs={setAvailableVerbs}
+          />
+
+          <TenseChecks 
+            availableTenses={availableTenses}
+            setAvailableTenses={setAvailableTenses}
+          />
+        </div>
+        
 
         {/* Game Box */}
-        <div className='box box-right'>
+        <div className='top-section box section-right'>
           <div>Score: {score}</div>
           <div>Streak: {streak}</div>
         </div>
